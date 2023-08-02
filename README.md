@@ -1,5 +1,10 @@
 # NodeJS 와 React 프로젝트
 
+## NodeJS 설치
+
+- NodeJS Back-End Server 와 React Front-End 개발을 위한 도구
+- Vanila JS 코드를 실행하고 테스트할 수 있는 도구
+
 ## 개발도구 설치
 
 `nodejs.org` 사이트에서 NodeJS LTS 버전 다운로드 후 설치
@@ -13,3 +18,36 @@
 ## 사용하여 React 폴더에서 vsCode 열기
 
 - `node --version` : 설치된 nodejs 버전 확인
+
+## NodeJS 서버 만들기
+
+- React 폴더에 프로젝트폴더(Node-000-Hello)를 생성하기
+- 생성된 폴더에서 터미널 창을 열고 `npm init` 명령 실행,
+  package.json 파일이 생성된다. 이 파일에 NodeJS 프로젝트 설정 항목이 들어있다.
+- 다음과 같이 package.json 을 변경한다
+
+```json
+{
+  "name": "node-000-hello",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "start": "node ./server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
+```
+
+## NodeJs + Express Server 만들기
+
+1. NodeJS 를 이용한 Back-End Project 에서 가장 많이 사용하는
+   Framework 인 Express 를 사용하여 서버 만들기
+2. express-generator 를 이용한 Express Server 만들기 : `npx express-generator [project]` - `npm install`
+3. express-21c 를 이용한 ES6+ Express Server 만들기 : `npx express-21c [project]`
+
+## React Project 만들기
+
+1. React 폴더에서 새로운 폴더 생성 `mkdir react-000-hello`
+2. 프로젝트 시작 : `npm init`
