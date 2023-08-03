@@ -51,3 +51,7 @@
 
 1. React 폴더에서 새로운 폴더 생성 `mkdir react-000-hello`
 2. 프로젝트 시작 : `npm init`
+
+## create-react-app 을 이용한 React Project 생성
+
+`npx create-react-app [project]`
