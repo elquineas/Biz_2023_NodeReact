@@ -8,12 +8,13 @@ nav.main ul {
   display: flex;
 }
 nav.main a {
+  display: inline-block;
   text-decoration: none;
   color: inherit;
   padding: 12px 16px;
 }
 nav.main a:hover {
   cursor: pointer;
-  background-color: #777;
-  transition: 2s;
+  background-color: skyblue;
+  transition: 1s;
 }

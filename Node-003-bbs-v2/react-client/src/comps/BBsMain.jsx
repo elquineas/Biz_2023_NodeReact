@@ -1,10 +1,10 @@
-import BBsInput from "./BBsInput";
-import "../css/BBs.css";
+import { Outlet } from "react-router-dom";
+// import "../css/BBs.css";
 
 const BBsMain = () => {
   return (
     <>
-      <BBsInput />
+      <Outlet />
     </>
   );
 };
