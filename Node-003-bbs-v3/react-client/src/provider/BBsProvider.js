@@ -1,5 +1,12 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import { getBBsList } from "../modules/FetchModule";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+} from "react";
+import { getBBsList, bbsInsert } from "../modules/FetchModule";
 
 const BBsContext = createContext();
 // use**() 로 시작되는 함수는 react 에서 Hook 함수라고 한다.
@@ -11,6 +18,8 @@ const useBBsContext = () => {
 };
 
 const BBsContextProvider = ({ children }) => {
+  const imgRef = useRef(null);
+  const imgsRef = useRef(null);
   const [bbs, setBBs] = useState({
     b_seq: 0,
     b_nickname: "",
@@ -27,6 +36,23 @@ const BBsContextProvider = ({ children }) => {
     fetchBBsList();
   }, []);
 
+  const bbsInsertCB = useCallback(async () => {
+    const formData = new FormData();
+    const file = imgRef?.current.files[0];
+    const files = imgsRef?.current.files;
+    const bbsStr = JSON.stringify(bbs);
+    formData.append("b_images", file);
+    for (let file of files) {
+      formData.append("b_images", file);
+    }
+    formData.append("bbs", bbsStr);
+    console.log(formData);
+    await bbsInsert(formData);
+
+    const result = await getBBsList();
+    setBBsList(result);
+  });
+
   //   const props = {
   //     bbs: bbs,
   //     setBBs: setBBs,
@@ -40,6 +66,9 @@ const BBsContextProvider = ({ children }) => {
     setBBs,
     bbsList,
     setBBsList,
+    bbsInsertCB,
+    imgRef,
+    imgsRef,
   };
   // BBsContext.Provider 라는 Store 에 state 와 setState() 함수를 담아준다
   return <BBsContext.Provider value={props}>{children}</BBsContext.Provider>;

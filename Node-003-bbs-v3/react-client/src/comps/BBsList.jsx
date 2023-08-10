@@ -17,8 +17,12 @@ const BBsList = () => {
     return (
       <tr key={bbs.b_seq} data-seq={bbs.b_seq}>
         <td>{bbs.b_seq}</td>
+        <td>
+          <img src={`/static/upload/${bbs.b_image}`} width="50px" />
+        </td>
         <td>{bbs.b_nickname}</td>
         <td>{bbs.b_title}</td>
+        <td>{bbs.b_content}</td>
         <td>0</td>
       </tr>
     );
@@ -30,8 +34,10 @@ const BBsList = () => {
         <thead>
           <tr>
             <th>SEQ</th>
+            <th>이미지</th>
             <th>작성자</th>
             <th>제목</th>
+            <th>내용</th>
             <th>조회수</th>
           </tr>
         </thead>

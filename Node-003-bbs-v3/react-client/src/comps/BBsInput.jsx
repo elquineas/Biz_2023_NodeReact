@@ -1,16 +1,15 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { filePreview, filesPreview } from "../modules/imagePreview";
-import { bbsInsert } from "../modules/FetchModule";
 import { useBBsContext } from "../provider/BBsProvider";
 import css from "../css/BBsInput.module.css";
 
 const BBsInput = () => {
   // const { bbs, setBBs } = useContext();
-  const { bbs, setBBs } = useBBsContext();
+  const { bbs, setBBs, bbsInsertCB, imgRef, imgsRef } = useBBsContext();
   const [image, setImage] = useState("");
   const [images, setImages] = useState([]);
-  const imgRef = useRef(null);
-  const imgsRef = useRef(null);
+  // const imgRef = useRef(null);
+  // const imgsRef = useRef(null);
 
   const setMainImage = (image) => {
     setImage(image);
@@ -48,25 +47,26 @@ const BBsInput = () => {
    * 3. fetch 보내기
    */
 
-  const insertButtonClickHandler = async (e) => {
-    // js에서 제공하는 Http 객체
-    const formData = new FormData();
-    const file = imgRef?.current.files[0];
-    const files = imgsRef?.current.files;
-    // formData 에 bbs(JSON 객체)를 실어서 서버로 보낼때는 객체를 직접 보낼수 없다.
-    // 객체를 Serialize(직렬화, 문자열화)
-    const bbsStr = JSON.stringify(bbs);
-    // node의 router Upload 미들웨어에서 받을 이름
-    formData.append("b_images", file); // 대표이미지
-    for (let file of files) {
-      formData.append("b_images", file); // 갤러리 이미지들
-    }
-    formData.append("bbs", bbsStr);
-    // formData.append("b_nickname", bbs.b_nickname);
-    // formData.append("b_title", bbs.b_title);
-    // formData.append("b_content", bbs.b_content);
-    console.log(formData);
-    await bbsInsert(formData);
+  const insertButtonClickHandler = async () => {
+    bbsInsertCB();
+    //   // js에서 제공하는 Http 객체
+    //   const formData = new FormData();
+    //   const file = imgRef?.current.files[0];
+    //   const files = imgsRef?.current.files;
+    //   // formData 에 bbs(JSON 객체)를 실어서 서버로 보낼때는 객체를 직접 보낼수 없다.
+    //   // 객체를 Serialize(직렬화, 문자열화)
+    //   const bbsStr = JSON.stringify(bbs);
+    //   // node의 router Upload 미들웨어에서 받을 이름
+    //   formData.append("b_images", file); // 대표이미지
+    //   for (let file of files) {
+    //     formData.append("b_images", file); // 갤러리 이미지들
+    //   }
+    //   formData.append("bbs", bbsStr);
+    //   // formData.append("b_nickname", bbs.b_nickname);
+    //   // formData.append("b_title", bbs.b_title);
+    //   // formData.append("b_content", bbs.b_content);
+    //   console.log(formData);
+    //   await bbsInsert(formData);
   };
 
   return (
