@@ -1,0 +1,83 @@
+/* 
+  private css 코딩
+  css 파일을 .module.css 이름으로 변경
+  BBS 컴포넌트에서 사용할 ccs : BBs.module.css 처럼 생성
+  이 파일의 모든 시작은 클래스
+*/
+
+.main {
+  width: 80%;
+  margin: 10px auto;
+  /* border: 1px solid mediumseagreen; */
+}
+
+.input_container,
+.button,
+.image {
+  width: 80%;
+  margin: 10px auto;
+}
+
+.input_container div {
+  display: flex;
+}
+.input_container input,
+.input_container label {
+  padding: 8px;
+  margin: 3px;
+}
+.input_container label {
+  flex: 1;
+  text-align: right;
+  color: #333;
+  white-space: nowrap;
+}
+.input_container input {
+  flex: 4;
+  outline: none;
+  border: 1px solid #999;
+  border-radius: 10px;
+}
+.input_container input:focus {
+  background-color: rgb(199, 237, 216);
+}
+.input_container input:hover {
+  border: 2px solid mediumseagreen;
+}
+
+.image_box input {
+  display: none;
+}
+.image_box label {
+  display: inline-block;
+  background-color: #ababab;
+  width: 80%;
+  padding: 5px;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  /* margin-bottom: 5px; */
+}
+
+.thumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  /* border: 1px solid blue; */
+}
+
+.button button {
+  background-color: rgb(172, 135, 172);
+  padding: 12px 26px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.button button:hover {
+  box-shadow: 2px 2px 2px 2px #cdcdcd;
+}
