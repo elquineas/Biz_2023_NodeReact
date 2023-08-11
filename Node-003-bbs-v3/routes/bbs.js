@@ -26,10 +26,16 @@ const Hello = {
   message: "Hello NodeJS BBS World",
 };
 
+const encKor = (str) => {
+  console.log(str);
+  return Buffer.from(str, "latin1").toString("UTF-8");
+};
+
 // 파일을 전송하기 위한 설정값 만들기
 const storageOption = {
   filename: (req, file, cb) => {
     console.log(file);
+    file.originalname = encKor(file.originalname);
     const originName = file.originalname;
     const filePrix = `${Date.now()} - ${Math.round(Math.random() * 100000)}`;
     const fileName = `${filePrix}-${originName}`;
@@ -76,7 +82,25 @@ router.post("/insert", uploadMiddleWare.array("b_images"), async (req, res) => {
 });
 
 router.get("/list", async (req, res) => {
-  const bbsList = await BBS.findAll();
+  // 1:N 관계에서 자동 JOIN 하는 코드
+  const bbsList = await BBS.findAll({
+    include: { model: FILES, as: "F_FILES" },
+  });
+  return res.json(bbsList);
+});
+
+// ?seq=값 => queryString 방식
+//          req.query.seq 로 받기
+// /:seq => PathVarriable 방식
+//          req.params.seq 로 받기
+// form 으로 전송한 데이터
+//          req.body 로 받기
+router.get("/detail/:seq", async (req, res) => {
+  const seq = req.params.seq;
+  const bbsList = await BBS.findOne({
+    where: { b_seq: seq },
+    include: { model: FILES, as: "F_FILES" },
+  });
   return res.json(bbsList);
 });
 

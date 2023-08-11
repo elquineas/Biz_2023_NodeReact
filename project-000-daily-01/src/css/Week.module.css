@@ -1,0 +1,57 @@
+.weekly {
+  width: 80%;
+  margin: 0 auto;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table thead tr,
+.table tbody tr {
+  display: flex;
+}
+.table thead tr th {
+  flex: 1;
+}
+.table tbody tr td {
+  flex: 1;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+}
+.table .todayTh,
+.table .todayTd {
+  border: 2px solid black;
+}
+.table .todayTh {
+  border-bottom: 1px solid #ddd;
+}
+.table .todayTd {
+  border-top: 1px solid #ddd;
+}
+
+.table .sun {
+  color: tomato;
+}
+
+.table .list {
+  border: 1px solid;
+  /* background-color: orange; */
+  /* padding: 50px; */
+}
+/* .table th:nth-of-type(3),
+.table td:nth-of-type(3) {
+  border-right: 2px solid black;
+}
+.table th:nth-of-type(4),
+.table td:nth-of-type(4) {
+  border: 2px solid black;
+}
+.table th:nth-of-type(4) {
+  border-bottom: 1px solid #ddd;
+}
+.table td:nth-of-type(4) {
+  border-top: 1px solid #ddd;
+} */
