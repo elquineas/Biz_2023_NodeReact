@@ -19,6 +19,7 @@ const DailyMain = () => {
       localStorage.setItem("DAILYLIST", JSON.stringify(dailyList));
       setDaily(initData());
     };
+    console.log(dailyList);
     resetDaily();
   }, [dailyList]);
 

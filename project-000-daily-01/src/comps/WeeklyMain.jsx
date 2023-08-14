@@ -24,22 +24,22 @@ const WeeklyMain = () => {
   const [weekly, setWeekly] = useState(() => weekData());
   const weekTitle = weekly.map((week) => {
     return (
-      <th
+      <span
         key={week.date}
         className={[
           (week.today && css.todayTh) || "",
           (week.sun && css.sun) || "",
         ].join(" ")}
       >
-        {week.week}
-      </th>
+        {week.week} <br />
+        {week.date.substr(5, 6)}
+      </span>
     );
   });
 
   const weekContent = weekly.map((week) => {
-    // console.log(week);
     return (
-      <td
+      <span
         key={week.date}
         className={[
           (week.today && css.todayTd) || "",
@@ -47,23 +47,23 @@ const WeeklyMain = () => {
         ].join(" ")}
       >
         {week.date.substr(8, 2)}
-      </td>
+      </span>
     );
   });
 
   return (
     <div className={css.weekly}>
-      <table className={css.table}>
-        <thead>
-          <tr>{weekTitle}</tr>
-        </thead>
-        <tbody>
-          <tr>{weekContent}</tr>
-          <WeeklyList dailyList={dailyList} weekly={weekly} />
-        </tbody>
-      </table>
+      <div className={css.week_daily}>{weekTitle}</div>
+      {/* <div>{weekContent}</div> */}
+      <WeeklyList dailyList={dailyList} weekly={weekly} />
     </div>
   );
 };
-
+// <table className={css.table}>
+//   <thead>{/* <tr>{weekTitle}</tr> */}</thead>
+//   <tbody>
+//     <tr>{weekContent}</tr>
+//
+//   </tbody>
+// </table>;
 export default WeeklyMain;

@@ -1,20 +1,23 @@
 .daily {
-  max-width: 700px;
+  /* background-color: orange; */
+  /* max-width: 700px; */
   min-width: 500px;
-  width: 80vw;
+  width: 100%;
   margin: 0 auto;
 }
 .daily .input {
   display: flex;
+  text-align: center;
+  align-items: center;
 }
 
-.daily .input input {
+.daily .input .input_coment {
   flex: 3;
-  padding: 8px;
+  padding: 11px 8px;
   margin: 3px;
   border-radius: 10px;
   outline: none;
-  border: 1px solid #ddd;
+  border: 1px solid skyblue;
 }
 
 .daily .input button {
@@ -37,13 +40,17 @@
 }
 
 .daily .input button:disabled {
-  background-color: #ddd;
+  background-color: skyblue;
   color: #777;
   cursor: not-allowed;
 }
 .daily .item {
   display: flex;
-  border: 1px solid #ddd;
+  border: 1px solid skyblue;
+  border-radius: 10px;
+  margin: 10px 0;
+  align-items: center;
+  text-align: center;
 }
 
 .daily .item div {
@@ -59,6 +66,9 @@
   opacity: 0;
   transition: 0.8s;
   border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  line-height: 20px;
 }
 .daily .item:hover .delete,
 .daily .item:hover .complete {

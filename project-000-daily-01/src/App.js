@@ -11,6 +11,10 @@ function App() {
       </header>
       <NavList />
       <Outlet />
+      <div className="App-footer-box"></div>
+      <footer className="App-footer">
+        CopyRight &copy; elquineas@naver.com
+      </footer>
     </div>
   );
 }
