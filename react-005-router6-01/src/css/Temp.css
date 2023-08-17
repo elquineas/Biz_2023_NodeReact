@@ -1,0 +1,7 @@
+table {
+  width: 80%;
+  margin: 0px auto;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  background-color: rgb(192, 120, 192);
+}
