@@ -1,0 +1,131 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+.bucket.container {
+  /* border: 1px solid black; */
+  padding: 5px;
+}
+.bucket.title {
+  border: 1px solid #ddd;
+  width: 90%;
+  margin: 10px auto 5px;
+  padding: 2px 10px;
+  font-size: 1.5rem;
+  text-align: left;
+}
+.bucket.box {
+  /* border: 1px solid blue; */
+  display: flex;
+  width: 90%;
+  margin: 0px auto;
+}
+.bucket.list {
+  flex: 3;
+}
+.bucket.input {
+  flex: 5;
+}
+
+.bucket.list > div {
+  display: flex;
+}
+.bucket.list > div > input {
+  flex: 2;
+  min-width: 50px;
+  max-width: 230px;
+  width: 100px;
+  padding: 5px 3px;
+  margin-right: 5px;
+}
+.bucket.list > div > button {
+  flex: 1;
+  min-width: 80px;
+  padding: 5px 3px;
+}
+
+.bucket.bucklist {
+  /* border: 1px solid red; */
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  margin: 3px 0;
+  overflow: auto;
+}
+.bucket.row {
+  display: flex;
+  /* border: 1px solid orange; */
+  text-align: left;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  margin: 5px 0;
+}
+.bucket.row .img_box {
+  flex: 1;
+  min-width: 40px;
+  max-width: 40px;
+  height: 100%;
+  /* border: 1px solid black; */
+}
+.bucket.row .img_box img {
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+.bucket.row .text_box {
+  flex: 9;
+  border: 1px solid #ddd;
+  margin-left: 3px;
+  padding: 2px;
+  font-size: 1.3rem;
+  box-shadow: 1px 1px 1px 0.3px;
+}
+
+.bucket.line {
+  border: 1px solid lightgray;
+  height: 280px;
+  margin: 0 20px;
+}
+
+.bucket.input {
+  display: flex;
+}
+.bucket.input .text_box {
+  /* border: 1px solid red; */
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
+.bucket.input .text_box input {
+  flex: 1;
+  width: 100%;
+  font-size: 1rem;
+  padding: 3px;
+  margin-bottom: 10px;
+}
+.bucket.input .text_box textarea {
+  flex: 12;
+  width: 100%;
+  font-size: 1rem;
+  padding: 3px;
+}
+.bucket.input .img_box {
+  border: 1px solid blue;
+  flex: 2;
+}
+.bucket.footer {
+  background-color: mediumseagreen;
+  height: 5vh;
+  margin: 30px;
+  border-radius: 0 0 30px 30px;
+  text-align: center;
+  line-height: 40px;
+  color: white;
+}
