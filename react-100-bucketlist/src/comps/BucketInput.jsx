@@ -15,7 +15,11 @@ const BucketInput = (props) => {
   };
 
   const onBlurBucket = (e) => {
-    saveBList(bDto.id);
+    if (title === "") {
+    } else if (content === "") {
+    } else {
+      saveBList(bDto.id);
+    }
   };
 
   return (

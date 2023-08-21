@@ -1,0 +1,16 @@
+.input_box {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  height: 40px;
+}
+.input_box input {
+  /* width: 150px; */
+}
+.input_box button {
+  width: 70px;
+  height: 35px;
+}
+.input_box form {
+  flex: 1;
+}
