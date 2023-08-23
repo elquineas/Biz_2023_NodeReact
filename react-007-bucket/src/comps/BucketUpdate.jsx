@@ -1,15 +1,13 @@
-import { useLoaderData } from "react-router-dom";
-import { getBucket } from "../modules/bucketFech";
+import { Form, useLoaderData, redirect, useSubmit } from "react-router-dom";
+import { getBucket, saveBucket } from "../modules/bucketFech";
 import styled from "styled-components";
+import css from "./BucketUpdate.module.scss";
+import Button from "../shareComps/Button";
+import dImage from "../assets/default.png";
+import { useRef } from "react";
 
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  flex: 3;
-`;
 const StyledContent = styled.div`
   flex: 1;
-  //   border: 1px solid orange;
   display: flex;
   & .form_text {
     flex: 4;
@@ -33,50 +31,77 @@ const StyledContent = styled.div`
       }
     }
   }
-  & .form_btn {
-    // border: 1px solid orange;
-    flex: 1;
-    & button {
-      width: 100%;
-      height: 100%;
-    }
-  }
-`;
-const StyledImage = styled.div`
-  //   border: 1px solid blue;
-  //   align-items: center;
-  flex: 5;
 `;
 
-export const updateLoader = ({ params }) => {
-  return getBucket(params.id);
+export const updateAction = async ({ request, params }) => {
+  const { id } = params;
+  const result = await getBucket(id);
+
+  const formData = await request.formData();
+
+  const inputBucket = Object.fromEntries(formData);
+
+  const newBucket = { ...result, ...inputBucket };
+  await saveBucket(newBucket);
+  return redirect(`/content/${id}`);
 };
 
 const BucketUpdate = () => {
-  const bucket = useLoaderData();
+  const { bucket } = useLoaderData();
+  const imgRef = useRef();
+  const submit = useSubmit();
+
+  const imageOnCLick = () => {
+    imgRef.current.click();
+  };
+
+  const onFileChange = (e, bucket) => {
+    const files = e.target.files;
+    if (files.length) {
+      const file = files[0];
+      const reader = new FileReader();
+      reader.onload = async () => {
+        console.log(reader.result);
+        await saveBucket({ ...bucket, img_src: reader.result });
+        return submit(null);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
-    <StyledForm>
-      <StyledContent>
-        <div className="form_text">
-          <div>
-            <label htmlFor="">작성일자</label>
-            <input type="text" value={bucket.sdate} />
+    <Form method="POST" className={css.bucket_form}>
+      <article className={css.first}>
+        <input
+          type="file"
+          onChange={(e) => onFileChange(e, bucket)}
+          accept="image/*"
+          ref={imgRef}
+        />
+        <StyledContent>
+          <div className="form_text">
+            <div>
+              <label htmlFor="">작성일자</label>
+              <input type="date" name="sdate" defaultValue={bucket.sdate} />
+            </div>
+            <div>
+              <label htmlFor="">작성시각</label>
+              <input type="time" name="stime" defaultValue={bucket.stime} />
+            </div>
+            <div>
+              <label htmlFor="">하고싶은일</label>
+              <input name="bucket" defaultValue={bucket.bucket} />
+            </div>
           </div>
-          <div>
-            <label htmlFor="">작성시각</label>
-            <input type="text" value={bucket.stime} />
-          </div>
-          <div>
-            <label htmlFor="">하고싶은일</label>
-            <input type="text" value={bucket.bucket} />
-          </div>
+        </StyledContent>
+        <div className={css.image}>
+          <img src={bucket.img_src || dImage} alt="" onClick={imageOnCLick} />
         </div>
         <div className="form_btn">
-          <button>저장</button>
+          <Button>저장</Button>
         </div>
-      </StyledContent>
-      <StyledImage>이미지</StyledImage>
-    </StyledForm>
+      </article>
+    </Form>
   );
 };
 

@@ -24,7 +24,7 @@ const BucketSearch = () => {
     <StyledInputDiv>
       <Input />
       <Form method="POST">
-        <Button bgcolor="mediumseagreen">새로작성</Button>
+        <Button bgcolor="skyblue">새로작성</Button>
       </Form>
     </StyledInputDiv>
   );

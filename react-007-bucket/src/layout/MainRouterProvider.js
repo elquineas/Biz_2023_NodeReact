@@ -1,8 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BucketMain, { mainLoader, mainAction } from "../comps/BucketMain";
 // import { bucketLoader, bucketAction } from "../modules/routerAction";
-import BucketDetail from "../comps/BucketDetail";
-import BucketUpdate, { updateLoader } from "../comps/BucketUpdate";
+import BucketDetail, {
+  detailLoader,
+  deleteAction,
+  completeAction,
+} from "../comps/BucketDetail";
+import BucketUpdate, { updateAction } from "../comps/BucketUpdate";
 
 /**
  *  RouterProvider 에 연결하여 각종 Routing 을 수행하는 설정만들기
@@ -14,11 +18,22 @@ const router = createBrowserRouter([
     loader: mainLoader,
     action: mainAction,
     children: [
-      { path: "content/:id", element: <BucketUpdate />, loader: updateLoader },
+      { path: "content/:id", element: <BucketDetail />, loader: detailLoader },
+      {
+        path: "content/:id/edit",
+        element: <BucketUpdate />,
+        loader: detailLoader,
+        action: updateAction,
+      },
+      {
+        path: "content/:id/complete",
+        action: completeAction,
+      },
+      { path: "content/:id/delete", action: deleteAction },
     ],
   },
 ]);
-/**
+/** <BucketUpdate />
  * react-router-dom 을 사용한 화면 layout 구현하는 도구
  * ...Provider 는 프로젝트 전반에서 routing (path 변경, 클릭, 다른화면 전환) 등을 쉽게 구현해 주는 도구
  * Provider 로 감싸는 부분은 router 를 사용한 Data Handling 이 가능하다
